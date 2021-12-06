@@ -58,9 +58,9 @@ get_new_winner <- function(boards_results, old_winners) {
 winners <- integer(0)
 latest_draw <- integer(0)
 while (length(number_draws) > 0) {
-  latest_draw <<- pop_draw(number_draws)
-  boards_results <<- apply_draw(boards_results, latest_draw)
-  winners <<- c(winners, get_new_winner(boards_results, winners))
+  latest_draw <- pop_draw(number_draws)
+  boards_results <- apply_draw(boards_results, latest_draw)
+  winners <- c(winners, get_new_winner(boards_results, winners))
   if (length(winners) == length(board_indexes)) break
 }
 last_winner <- tail(winners, 1)
