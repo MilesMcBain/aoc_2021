@@ -1,5 +1,5 @@
 BOARD_SIZE <- 5
-input_file <- "input4_1.txt"
+input_file <- "input4_2.txt"
 
 number_draws <-
   readLines(input_file, n = 1) |>
@@ -43,7 +43,7 @@ apply_draw <- function(boards_results, draw) {
   boards_results
 }
 
-get_winner <- function(boards_results) {
+get_new_winner <- function(boards_results, old_winners) {
   winners <- lapply(
     board_indexes,
     \(board_ind) {
@@ -52,20 +52,21 @@ get_winner <- function(boards_results) {
     }
   ) |>
     unlist()
-
-  head(which(winners), 1)
+  setdiff(which(winners), old_winners)
 }
 
-winner <- integer(0)
+winners <- integer(0)
 latest_draw <- integer(0)
-while (length(winner) == 0) {
+while (length(number_draws) > 0) {
   latest_draw <<- pop_draw(number_draws)
   boards_results <<- apply_draw(boards_results, latest_draw)
-  winner <<- get_winner(boards_results)
+  winners <<- c(winners, get_new_winner(boards_results, winners))
+  if (length(winners) == length(board_indexes)) break
 }
-
-winning_board <- boards[board_num_to_indexes(winner)]
+last_winner <- tail(winners, 1)
+winning_board <- boards[board_num_to_indexes(last_winner)]
 unmarked_on_winning_board <-
-  winning_board[!boards_results[board_num_to_indexes(winner)]]
+  winning_board[!boards_results[board_num_to_indexes(last_winner)]]
 
 print(latest_draw * sum(unmarked_on_winning_board))
+
