@@ -10,7 +10,7 @@ expand_points <- function(points_vec) {
   if (coordinates["x1"] != coordinates["x2"] & 
       coordinates["y1"] != coordinates["y2"]) return(NULL)
 
-  expand.grid(x = seq(coordinates["x1"], coordinates["x2"]), 
+  cbind(x = seq(coordinates["x1"], coordinates["x2"]), 
               y = seq(coordinates["y1"], coordinates["y2"]))
 
 } 
@@ -20,6 +20,7 @@ points_matrix <-
   str_extract_all("[0-9]+") |>
   lapply(expand_points) |>
   do.call(what = rbind) |>
+  as.data.frame() |>
   group_by(x, y) |>
   summarise(
     times_covered = n(),
