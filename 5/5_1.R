@@ -11,12 +11,11 @@ expand_points <- function(points_vec) {
       coordinates["y1"] != coordinates["y2"]) return(NULL)
 
   cbind(x = seq(coordinates["x1"], coordinates["x2"]), 
-              y = seq(coordinates["y1"], coordinates["y2"]))
+        y = seq(coordinates["y1"], coordinates["y2"]))
 
 } 
 
-points_matrix <-
-  read_lines("input5_1.txt") |>
+read_lines("input5_1.txt") |>
   str_extract_all("[0-9]+") |>
   lapply(expand_points) |>
   do.call(what = rbind) |>
