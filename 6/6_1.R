@@ -1,5 +1,3 @@
-library(dplyr)
-library(tidyr)
 options(scipen = 999)
 
 fish_ages <-
