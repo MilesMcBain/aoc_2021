@@ -16,8 +16,7 @@ move_cost_vec <-
   )
 
 move_cost_function <- function(distance) {
-  non_zero_distance <- distance[distance > 0]
-  sum(move_cost_vec[non_zero_distance])
+  sum(move_cost_vec[distance])
 }
 
 vapply(possible_positions,
@@ -26,4 +25,3 @@ vapply(possible_positions,
   },
   integer(1)) |>
   min()
-
