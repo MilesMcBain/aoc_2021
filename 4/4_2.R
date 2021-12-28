@@ -20,7 +20,7 @@ boards <-
 
 boards_results <-
   array(rep(FALSE, length(boards)), dim = dim(boards))
-# Another 3d indicator array
+# An indicator array
 
 board_num_to_indexes <- function(board_num, .dim = dim(boards)) {
   row <- rep(seq(BOARD_SIZE), times = BOARD_SIZE) +

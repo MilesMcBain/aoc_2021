@@ -7,3 +7,4 @@ positions <- scan(
 (positions - median(positions)) |>
   abs() |>
   sum()
+

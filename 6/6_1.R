@@ -32,3 +32,29 @@ new_population <-
       })
 
 do.call(sum, new_population)
+
+
+shift_vector_left <- function(a_vec) {
+  vec_names <- names(a_vec)
+  c(a_vec[-1], 0) |>
+    setNames(vec_names)
+}
+
+
+your_list <-
+  list(
+  key_a = list(x="id", y="value"),
+  key_b = list(x="id", y="value"),
+  key_c = list(x="id", y="value"),
+  key_a = list(x="id", y="value"),
+  key_b = list(x="id", y="value")
+) 
+
+lapply(unique(names(your_list)),
+  function(key) {
+    foo[names(your_list) == key] |>
+    lapply(`[[`, "y" ) |>
+    do.call(what = c)  
+  }
+)
+

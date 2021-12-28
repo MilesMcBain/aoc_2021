@@ -19,9 +19,11 @@ move_cost_function <- function(distance) {
   sum(move_cost_vec[distance])
 }
 
-vapply(possible_positions,
+vapply(
+  possible_positions,
   function(a_position) {
-  move_cost_function(abs(a_position - positions))
+    move_cost_function(abs(a_position - positions))
   },
-  integer(1)) |>
+  integer(1)
+) |>
   min()
