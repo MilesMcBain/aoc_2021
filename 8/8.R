@@ -80,9 +80,6 @@ deduce_patterns <- function(sample) {
   )
 }
 
-reading <- input$reading[[2]]
-digit_key <- input$digit_key[[2]]
-
 decode_reading <- function(reading, digit_key) {
   reading_bools <-
     as_bool_vecs(reading)
